@@ -90,7 +90,79 @@ struct snode * reverse_link_list(struct snode *head){
     head = p1;
     return head;
 }
+struct snode * delete_from_begning(struct snode *head)
+{   
+    if (head == NULL){
+        printf("List is empty\n");
+    }else{
+        struct snode *p1 =head;
+        head = head->next;
+        printf("Deleting : %d", p1->info);
+        free(p1);
+    }
+}
 
+struct snode * delete_from_last(struct snode *head)
+{   
+    if (head == NULL){
+        printf("List is empty\n");
+    }else{
+        struct snode *p1,*p2;
+        p1 =head;
+        while (p1->next != NULL){
+            p2 = p1;
+            p1 = p1->next;
+        }
+        p2->next = NULL;
+        free(p1);
+    }return head;
+}
+struct snode * delete_from_postiotn1(struct snode *head)
+{   
+    if (head == NULL){
+        printf("List is empty\n");
+    }else{
+        int pos;
+        printf("Enter the position : ");
+        scanf("%d",&pos);
+        struct snode *p1 =head,*p2;
+        for (int i = 0; i < pos-1; i++){
+            p2 = p1;
+            p1 = p1->next;
+        }
+        p2->next = p1->next;
+        free(p1);
+    }return head;
+}
+struct snode * delete_from_postiotn2(struct snode *head)
+{   
+    int pos , count =1;
+    printf("Enter postion %d");
+    scanf("%d", &pos);
+    struct snode * p1 ,*p2;
+    p1 = head;
+    while (p1 != NULL ){
+        count++;
+        p1 = p1->next;
+    }
+    if (head == NULL){
+        printf("List is empty\n");
+    }else if (count <pos){
+        printf("Deletion not posible " );
+    }else{
+        count =1;
+        p1 =head;
+        while (count<pos)
+        {
+            p2 = p1,
+            p1 = p1->next;
+            count ++;
+        }
+        p2 ->next = p1->next;
+        printf("Deleting %d", p1->info);
+        free(p1);
+    }
+}
 int main(){
     int choice;
     struct snode *head =NULL;
